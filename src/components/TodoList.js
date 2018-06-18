@@ -6,6 +6,11 @@ import TodoListItem from './TodoListItem';
 import { addTask, deleteTask, updateTask } from '../actions'
 import Task from '../model/Task';
 
+const constants = {
+  newTaskPlaceholder: "What needs to be done?",
+  addButtonTitle: "ADD"
+}
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +22,19 @@ class TodoList extends Component {
   }
 
   addTask() {
+    if (!this.state.title) {
+      return
+    }
     const task = new Task(this.state.title);
     this.props.addTask(task);
+    this.newTaskInput.blur();
+    this._clearTextInput();
+  }
+
+  _clearTextInput() {
+    this.setState({
+      title: undefined
+    })
   }
 
   onChangeText(text) {
@@ -30,8 +46,13 @@ class TodoList extends Component {
   render() {
     return (
       <View>
-        <TextInput placeholder={"Please input the task title!"} onChangeText={this.onChangeText} />
-        <Button title={"Add"} onPress={this.addTask}/>
+        <TextInput 
+          placeholder={constants.newTaskPlaceholder} 
+          onChangeText={this.onChangeText}
+          value={this.state.title}
+          ref={(ref) => this.newTaskInput = ref} 
+        />
+        <Button title={constants.addButtonTitle} onPress={this.addTask}/>
         <ListView 
           enableEmptySections={true}
           dataSource={this.state.dataSource.cloneWithRows(this.props.tasks)}

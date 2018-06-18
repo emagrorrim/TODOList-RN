@@ -21,7 +21,7 @@ export default class TodoListItem extends Component {
     const task = this.props.task;
     return (
       <View>
-        <Switch value={this.props.task.completed} onValueChange={this.updateTask}/>
+        <Switch value={task.completed} onValueChange={this.updateTask}/>
         <Text>{"title:" + task.title}</Text>
         <Button title={"X"} onPress={this.deleteTask} />
       </View>

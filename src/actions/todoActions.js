@@ -1,6 +1,8 @@
+import { ADD_TASK, DELETE_TASK, UPDATE_TASK } from '../actions/types';
+
 export const addTask = (task) => {
   return {
-    type: 'ADD',
+    type: ADD_TASK,
     payload: {
       task: task
     }
@@ -9,7 +11,7 @@ export const addTask = (task) => {
 
 export const deleteTask = (task) => {
   return {
-    type: 'DELETE',
+    type: DELETE_TASK,
     payload: {
       task: task
     }
@@ -18,7 +20,7 @@ export const deleteTask = (task) => {
 
 export const updateTask = (task) => {
   return {
-    type: 'UPDATE',
+    type: UPDATE_TASK,
     payload: {
       task: task
     }

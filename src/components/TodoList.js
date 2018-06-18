@@ -49,9 +49,8 @@ class TodoList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    tasks: state
+    tasks: state.todo
   }
 }
 

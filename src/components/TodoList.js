@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, ListView } from 'react-native';
+import { Platform, StyleSheet, View, Text, TextInput, Button, ListView } from 'react-native';
 import { connect } from 'react-redux';
 
 import TodoListItem from './TodoListItem';
@@ -7,6 +7,7 @@ import { addTask, deleteTask, updateTask } from '../actions'
 import Task from '../model/Task';
 
 const constants = {
+  title: "todos",
   newTaskPlaceholder: "What needs to be done?",
   addButtonTitle: "ADD"
 }
@@ -46,16 +47,25 @@ class TodoList extends Component {
   render() {
     return (
       <View>
-        <TextInput 
-          placeholder={constants.newTaskPlaceholder} 
-          onChangeText={this.onChangeText}
-          value={this.state.title}
-          ref={(ref) => this.newTaskInput = ref} 
-        />
-        <Button title={constants.addButtonTitle} onPress={this.addTask}/>
         <ListView 
+          style={{paddingBottom: 20}}
           enableEmptySections={true}
           dataSource={this.state.dataSource.cloneWithRows(this.props.tasks)}
+          renderHeader={ (value) =>
+            <View style={{marginLeft: 10, marginRight: 10}}>
+              <Text style={styles.title} >{constants.title}</Text>
+              <View style={styles.newTask}>
+                <TextInput 
+                  style={styles.input}
+                  placeholder={constants.newTaskPlaceholder} 
+                  onChangeText={this.onChangeText}
+                  value={this.state.title}
+                  ref={(ref) => this.newTaskInput = ref} 
+                />
+                <Button style={styles.addButton} title={constants.addButtonTitle} onPress={this.addTask}/>
+              </View>
+            </View>
+          }
           renderRow={ (task) => 
             <TodoListItem 
               task={task} 
@@ -68,6 +78,37 @@ class TodoList extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    lineHeight: 200,
+    fontWeight: '100',
+    fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : 'Helvetica Neue',
+    fontSize: 100,
+    color: 'rgba(175, 47, 47, 0.15)',
+    textAlign: 'center'
+  },
+  newTask: {
+    flexDirection: 'row', 
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 0.5,
+    backgroundColor: 'white',
+    shadowColor: 'grey',
+    shadowOpacity: 0.2,
+    shadowOffset: { 
+      width: 2, 
+      height: 5
+    }
+  },
+  input: {
+    flex: 5,
+    marginLeft: 20
+  },
+  addButton: {
+    flex: 1,
+    marginRight: 20
+  }
+})
 
 const mapStateToProps = (state) => {
   return {

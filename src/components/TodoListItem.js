@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Switch, Button } from 'react-native';
+import { StyleSheet, Text, View, Switch, Button } from 'react-native';
 
 export default class TodoListItem extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class TodoListItem extends Component {
   render() {
     const task = this.props.task;
     return (
-      <View>
+      <View style={{backgroundColor: 'white'}}>
         <Switch value={task.completed} onValueChange={this.updateTask}/>
         <Text>{"title:" + task.title}</Text>
         <Button title={"X"} onPress={this.deleteTask} />

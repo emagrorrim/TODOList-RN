@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Dimensions, SafeAreaView, View } from 'react-native';
 
 import TodoList from '../components/TodoList'
 
-const constants = {
-  title: "todos"
-}
+let { height } = Dimensions.get("window");
 
 export default class TodoListScreen extends Component {
   render() {
     return (
-      <SafeAreaView>
-        <Text>{constants.title}</Text>
-        <TodoList/>
-      </SafeAreaView>
+      <View style={{backgroundColor: '#f5f5f5', height}}>
+        <SafeAreaView>
+          <TodoList />
+        </SafeAreaView>
+      </View>
     )
   }
 }

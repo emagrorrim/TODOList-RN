@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   newTask: {
     flexDirection: 'row', 
-    borderBottomColor: 'lightgrey',
+    borderBottomColor: '#e1e8ee',
     borderBottomWidth: 0.5,
     backgroundColor: 'white',
     shadowColor: 'grey',

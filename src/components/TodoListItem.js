@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Switch, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 export default class TodoListItem extends Component {
   constructor(props) {
@@ -21,11 +22,21 @@ export default class TodoListItem extends Component {
     const task = this.props.task;
     return (
       <View style={styles.bg}>
-        <Switch style={styles.switch} value={task.completed} onValueChange={this.updateTask}/>
+        <CheckBox 
+          containerStyle={styles.checkbox} 
+          checked={task.completed} 
+          onPress={() => this.updateTask(!task.completed)}
+        />
         <Text style={styles.title}>{task.title}</Text>
-        <TouchableOpacity style={styles.deleteButton} onPress={this.deleteTask}>
-          <Text style={styles.deleteButtonTitle}>{"X"}</Text>
-        </TouchableOpacity>
+        <CheckBox
+          iconRight
+          containerStyle={styles.deleteButton} 
+          checked={true}
+          iconType='material'
+          checkedIcon='clear'
+          checkedColor='red'
+          onPress={this.deleteTask}
+        />
       </View>
     )
   }
@@ -33,7 +44,13 @@ export default class TodoListItem extends Component {
 
 const styles = StyleSheet.create({
   bg: {
-    alignContent: 'center', flexDirection: 'row', backgroundColor: 'white', marginLeft: 10, marginRight: 10,
+    alignContent: 'center', 
+    flexDirection: 'row', 
+    backgroundColor: 'white', 
+    marginLeft: 10, 
+    marginRight: 10,
+    borderBottomColor: '#e1e8ee',
+    borderBottomWidth: 0.5,
     shadowColor: 'grey',
     shadowOpacity: 0.2,
     shadowOffset: { 
@@ -41,17 +58,23 @@ const styles = StyleSheet.create({
       height: 5
     }
   },
-  switch: {
-    flex: 1
+  checkbox: {
+    flex: 1,
+    borderWidth: 0,
+    backgroundColor: 'white',
+    alignSelf: 'center'
   },
   title: {
-    flex: 3,
+    flex: 8,
     lineHeight: 60,
     fontSize: 18,
     fontWeight: '300'
   },
   deleteButton: {
-    flex: 1
+    flex: 2,
+    borderWidth: 0,
+    backgroundColor: 'white',
+    alignSelf: 'center'
   },
   deleteButtonTitle: {
     lineHeight: 60,

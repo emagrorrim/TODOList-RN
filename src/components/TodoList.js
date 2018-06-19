@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View, Text, TextInput, Button, ListView } from 'react-native';
+import { Platform, StyleSheet, View, Text, TextInput, TouchableOpacity, ListView } from 'react-native';
 import { connect } from 'react-redux';
 
 import TodoListItem from './TodoListItem';
@@ -62,7 +62,9 @@ class TodoList extends Component {
                   value={this.state.title}
                   ref={(ref) => this.newTaskInput = ref} 
                 />
-                <Button style={styles.addButton} title={constants.addButtonTitle} onPress={this.addTask}/>
+                <TouchableOpacity style={styles.addButton} onPress={this.addTask}>
+                  <Text style={styles.addButtonTitle}>{constants.addButtonTitle}</Text>
+                </TouchableOpacity>
               </View>
             </View>
           }
@@ -101,12 +103,19 @@ const styles = StyleSheet.create({
     }
   },
   input: {
-    flex: 5,
-    marginLeft: 20
+    flex: 4,
+    marginLeft: 20,
+    height: 60,
+    fontSize: 18
   },
   addButton: {
     flex: 1,
-    marginRight: 20
+    backgroundColor: 'rgba(175, 47, 47, 0.75)'
+  },
+  addButtonTitle: {
+    color: 'white',
+    lineHeight: 60, 
+    textAlign: 'center'
   }
 })
 

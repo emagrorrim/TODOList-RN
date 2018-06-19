@@ -26,15 +26,16 @@ export default class TodoListItem extends Component {
           containerStyle={styles.checkbox} 
           checked={task.completed} 
           onPress={() => this.updateTask(!task.completed)}
+          checkedColor='#68c2b1'
         />
-        <Text style={styles.title}>{task.title}</Text>
+        <Text style={task.completed ? styles.titleDone : styles.title}>{task.title}</Text>
         <CheckBox
           iconRight
           containerStyle={styles.deleteButton} 
           checked={true}
           iconType='material'
           checkedIcon='clear'
-          checkedColor='red'
+          checkedColor='rgba(175, 47, 47, 0.35)'
           onPress={this.deleteTask}
         />
       </View>
@@ -68,8 +69,17 @@ const styles = StyleSheet.create({
     flex: 8,
     lineHeight: 60,
     fontSize: 18,
-    fontWeight: '300'
+    fontWeight: '300',
+    color: 'rgb(77, 77, 77)'
   },
+  titleDone: {
+    flex: 8,
+    lineHeight: 60,
+    fontSize: 18,
+    fontWeight: '300',
+    color: 'rgb(175, 175, 175)',
+    textDecorationLine: 'line-through'
+  } ,
   deleteButton: {
     flex: 2,
     borderWidth: 0,

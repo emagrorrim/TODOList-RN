@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
     flex: 4,
     marginLeft: 20,
     height: 60,
-    fontSize: 18
+    fontSize: 18,
+    color: 'rgb(77, 77, 77)'
   },
   addButton: {
     flex: 1,

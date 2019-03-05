@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "setup": "npm i && react-native link react-native-vector-icons",
+    "iphonexr": "react-native run-ios --simulator=\"iPhone XR\"",
     "test": "jest"
   },
   "dependencies": {

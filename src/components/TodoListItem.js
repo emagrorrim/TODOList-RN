@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgba(175, 47, 47, 0.75)'
   }
-})
+});

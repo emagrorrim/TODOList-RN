@@ -7,7 +7,7 @@ export const addTask = (task) => {
       task: task
     }
   }
-}
+};
 
 export const deleteTask = (task) => {
   return {
@@ -16,7 +16,7 @@ export const deleteTask = (task) => {
       task: task
     }
   }
-}
+};
 
 export const updateTask = (task) => {
   return {
@@ -25,4 +25,4 @@ export const updateTask = (task) => {
       task: task
     }
   }
-}
+};

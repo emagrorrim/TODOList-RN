@@ -10,7 +10,7 @@ const constants = {
   title: "todos",
   newTaskPlaceholder: "What needs to be done?",
   addButtonTitle: "ADD"
-}
+};
 
 class TodoList extends Component {
   constructor(props) {
@@ -118,12 +118,12 @@ const styles = StyleSheet.create({
     lineHeight: 60, 
     textAlign: 'center'
   }
-})
+});
 
 const mapStateToProps = (state) => {
   return {
     tasks: state.todo
   }
-}
+};
 
 export default connect(mapStateToProps, { addTask, deleteTask, updateTask })(TodoList);

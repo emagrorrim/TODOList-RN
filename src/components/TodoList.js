@@ -51,32 +51,40 @@ class TodoList extends Component {
           style={{paddingBottom: 20}}
           enableEmptySections={true}
           dataSource={this.state.dataSource.cloneWithRows(this.props.tasks)}
-          renderHeader={ (value) =>
-            <View style={{marginLeft: 10, marginRight: 10}}>
-              <Text style={styles.title} >{constants.title}</Text>
-              <View style={styles.newTask}>
-                <TextInput 
-                  style={styles.input}
-                  placeholder={constants.newTaskPlaceholder} 
-                  onChangeText={this.onChangeText}
-                  value={this.state.title}
-                  ref={(ref) => this.newTaskInput = ref} 
-                />
-                <TouchableOpacity style={styles.addButton} onPress={this.addTask}>
-                  <Text style={styles.addButtonTitle}>{constants.addButtonTitle}</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          }
-          renderRow={ (task) => 
-            <TodoListItem 
-              task={task} 
-              updateTask={this.props.updateTask} 
-              deleteTask={this.props.deleteTask}
-            /> 
-          }
+          renderHeader={this._renderHeader.bind(this)}
+          renderRow={this._renderRow.bind(this)}
         />
       </View>
+    )
+  }
+
+  _renderHeader() {
+    return (
+        <View style={{marginLeft: 10, marginRight: 10}}>
+          <Text style={styles.title} >{constants.title}</Text>
+          <View style={styles.newTask}>
+            <TextInput
+                style={styles.input}
+                placeholder={constants.newTaskPlaceholder}
+                onChangeText={this.onChangeText}
+                value={this.state.title}
+                ref={(ref) => this.newTaskInput = ref}
+            />
+            <TouchableOpacity style={styles.addButton} onPress={this.addTask}>
+              <Text style={styles.addButtonTitle}>{constants.addButtonTitle}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+    )
+  }
+
+  _renderRow(task) {
+    return (
+        <TodoListItem
+            task={task}
+            updateTask={this.props.updateTask}
+            deleteTask={this.props.deleteTask}
+        />
     )
   }
 }
